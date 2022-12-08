@@ -1,12 +1,11 @@
 <?php 
-
-    session_start();
-
-    if (!isset($_SESSION["user"])) {
-        header('location: index.php');
-        exit();
-    }
-
+    include("vendor/autoload.php");
+    use Helpers\Auth;
+    $user = Auth::check();
+    
+    // echo '<pre>';
+    // print_r($user); exit();
+    // echo '</pre>';
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +21,7 @@
     
 
     <div class="container mt-5">
-        <h1 class="mb-3">Michael (User Profile)</h1>
+        <h1 class="mb-3"><?= $user->name ?> (<?= $user->role ?>)</h1>
 
         <?php if (isset($_GET['error'])): ?>
             <div class="alert alert-warning">
@@ -30,7 +29,7 @@
             </div>
         <?php endif ?>
 
-        <?php if(file_exists('_actions/photos/profile.jpg')): ?>
+        <!-- <?php if(file_exists('_actions/photos/profile.jpg')): ?>
             <img class="img-thumbnail mb-3" src="_actions/photos/profile.jpg" alt="Profile Photo" width="200" height="200">
         <?php endif ?>
 
@@ -39,19 +38,19 @@
                 <input type="file" name="photo" class="form-control">
                 <button class="btn btn-secondary">Upload</button>
             </div>
-        </form>
+        </form> -->
 
         <ul class="list-group">
             <li class="list-group-item">
-                <b>Email:</b> hha19@gmail.com
+                <b>Email:</b> <?= $user->email ?>
             </li>
 
             <li class="list-group-item">
-                <b>Phone:</b> (09) 123 456 789
+                <b>Phone:</b> <?= $user->phone ?>
             </li>
 
             <li class="list-group-item">
-                <b>Address:</b> No.79, Main Street, Fox River
+                <b>Address:</b> <?= $user->address ?>
             </li>
         </ul>
         <br>

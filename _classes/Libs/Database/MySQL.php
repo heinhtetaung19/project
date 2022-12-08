@@ -40,6 +40,7 @@ class MySQL
             );
 
             return $this->db;
+            
         } catch (PDOException $e) {
             echo $e->getMessage();
             exit();
