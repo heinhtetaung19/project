@@ -7,11 +7,11 @@ use PDOException;
 
 class MySQL 
 {
-    private $db;
     private $dbhost;
     private $dbuser;
     private $dbpass;
     private $dbname;
+    private $db;
 
     public function __construct(
         $dbhost = "localhost",
@@ -23,6 +23,7 @@ class MySQL
         $this->dbuser = $dbuser;
         $this->dbpass = $dbpass;
         $this->dbname = $dbname;
+        $this->db = null;
     }
 
     public function connect()

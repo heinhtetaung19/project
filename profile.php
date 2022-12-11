@@ -5,7 +5,6 @@
     
     // echo '<pre>';
     // print_r($user); exit();
-    // echo '</pre>';
 ?>
 
 <!DOCTYPE html>
@@ -29,16 +28,16 @@
             </div>
         <?php endif ?>
 
-        <!-- <?php if(file_exists('_actions/photos/profile.jpg')): ?>
-            <img class="img-thumbnail mb-3" src="_actions/photos/profile.jpg" alt="Profile Photo" width="200" height="200">
+        <?php if (file_exists("_actions/photos/$user->photo")): ?>
+            <img src="_actions/photos/<?= $user->photo ?>" alt="" width="200">
         <?php endif ?>
 
         <form action="_actions/upload.php" method="post" enctype="multipart/form-data">
-            <div class="input-group mb-3">
+            <div class="input-group my-3">
                 <input type="file" name="photo" class="form-control">
                 <button class="btn btn-secondary">Upload</button>
             </div>
-        </form> -->
+        </form>
 
         <ul class="list-group">
             <li class="list-group-item">
@@ -55,8 +54,11 @@
         </ul>
         <br>
 
-        <a href="_actions/logout.php">Logout</a>
+        <a href="_actions/logout.php" class=" text-danger">Logout</a>
+        <a href="admin.php">User Admin</a>
 
     </div>
 </body>
 </html>
+
+<?php
